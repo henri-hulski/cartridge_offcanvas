@@ -1,0 +1,6 @@
+{% load i18n txt_in_img %}
+
+<button id="open-cart">
+     <img src="{% txt_in_img request.cart.total_quantity "cart.png" "#fff" %}"
+          alt="{% blocktrans count request.cart.total_quantity as cart_quantity %}1 item{% plural %}{{ cart_quantity }} items{% endblocktrans %}">
+</button>

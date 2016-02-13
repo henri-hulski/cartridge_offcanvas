@@ -1,0 +1,16 @@
+{% extends "shop/_product.html" %}
+{% load mezzanine_tags i18n staticfiles %}
+
+{% block add_product_form %}
+<div id="add-product-errors" class="form-errors"></div>
+{% errors_for add_product_form %}
+
+<form method="post" id="add-cart" class="shop-form" onsubmit="addProduct(); return false;">
+    {% fields_for add_product_form %}
+    <input type="hidden" class="open-cart" name="add_cart">
+    <button type="button" class="btn btn-primary btn-lg" onclick="addProduct()">
+        {% trans "Buy" %}
+        <span id="add-product-spinner">&nbsp;<img src="{% static 'img/spinner.gif' %}" alt="{% trans "Loading…" %}"></span>
+    </button>
+</form>
+{% endblock %}

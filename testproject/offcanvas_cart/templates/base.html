@@ -1,0 +1,40 @@
+{% extends "_base.html" %}
+{% load mezzanine_tags i18n staticfiles %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static "css/sidecart.css" %}" />
+    <link rel="stylesheet" href="{% static "css/offcanvas_cart.css" %}" />
+{% endblock %}
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript">
+      {% if step %}
+        var checkoutActive = true,
+            cartChanged = false;
+      {% else %}
+        var checkoutActive = false;
+      {% endif %}
+    </script>
+    <script src="{% static "js/offcanvas_cart.js" %}"></script>
+{% endblock %}
+
+{% block open_cart_button %}
+    {% nevercache %}
+        &nbsp; {% include "shop/includes/open_cart_button.html" %}
+    {% endnevercache %}
+{% endblock %}
+
+{% block content %}
+    {% nevercache %}
+        {% include "shop/includes/offcanvas_cart.html" %}
+    {% endnevercache %}
+    <div class="content-wrap">
+        {{ block.super }}
+    </div>
+{% endblock %}
+
+{% block footer_js %}
+    <script src="{% static "js/sidecart.js" %}"></script>
+    {{ block.super }}
+{% endblock %}

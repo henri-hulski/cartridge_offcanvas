@@ -1,0 +1,8 @@
+{% extends "shop/_checkout.html" %}
+{% load i18n %}
+
+{% block edit_cart_button %}
+    <button type="button" class="open-cart btn btn-default">
+        {% trans "Edit Cart" %}
+    </button>
+{% endblock %}

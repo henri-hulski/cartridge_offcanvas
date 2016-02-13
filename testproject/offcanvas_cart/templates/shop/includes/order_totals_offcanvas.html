@@ -1,0 +1,49 @@
+{% load shop_tags i18n %}
+      <div class="cart-subtotal">
+          <dl class="calculation">
+              <dt>{% trans "Sub total" %}:</dt>
+              <dd>{{ item_total|currency }}</dd>
+          </dl>
+      </div>
+
+    {% if discount_total %}
+        <dl class="calculation">
+            <dt>
+                {% if discount_type %}
+                {{ discount_type }}:
+                {% else %}
+                {% trans "Discount" %}:
+                {% endif %}
+            </dt>
+            <dd>{{ discount_total|currency }}</dd>
+        </dl>
+    {% endif %}
+        <dl class="calculation">
+            <dt>
+                {% if shipping_type %}
+                {{ shipping_type }}:
+                {% else %}
+                {% trans "Shipping" %}:
+                {% endif %}
+            </dt>
+            <dd>{{ shipping_total|currency }}</dd>
+        </dl>
+    {% if tax_total %}
+        <dl class="calculation">
+            <dt>
+                {% if tax_type %}
+                {{ tax_type }}:
+                {% else %}
+                {% trans "Tax" %}:
+                {% endif %}
+            </dt>
+            <dd>{{ tax_total|currency }}</dd>
+        </dl>
+    {% endif %}
+
+        <div class="cart-total">
+            <dl class="calculation total">
+                <dt>{% trans "Total" %}:</dt>
+                <dd>{{ order_total|currency }}</dd>
+            </dl>
+        </div>

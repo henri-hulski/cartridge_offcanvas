@@ -1,0 +1,112 @@
+{% load mezzanine_tags offcanvas_shop_tags shop_tags i18n %}
+
+<section class="cart-wrap">
+    <div class="sidemenu" id="off-cart">
+        <div class="Cart">
+            {% block cart_header %}
+            <header class="cart-header">
+                <h2>
+                    {% trans "Your Cart" %}
+                </h2>
+            </header>
+            {% endblock %}
+            {% if messages %}
+                {% block messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="alert alert-dismissable alert-dark-{{ message.tags }}" data-alert="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+                {% endblock %}
+            {% endif %}
+            {% if off_cart_formset.forms %}
+                {% block cart_form %}
+                <form method="post" id="off-cart-form">
+                    {% csrf_token %}
+                    {% if off_cart_formset.errors %}
+                        {% for error in off_cart_formset.errors %}
+                            {% if error.values.0 %}
+                                {{ error.values.0 }}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {{ off_cart_formset.management_form }}
+                    <input name="update_cart" type="hidden" value="true">
+
+                    {% block cart_items %}
+                    <div class="cart-line-items" id="off-cart-line-items">
+                        <div class="cart-item-container">
+                            <ul class="items">
+                                {% for form in off_cart_formset.forms %}
+                                    {% with form.instance as item %}
+                                        <li class="item">
+                                            {{ form.id }}
+                                            {{ form.quantity }}
+                                            {{ form.DELETE }}
+                                            <div class="summary">
+                                                {% if item.image %}
+                                                {% block item_image %}
+                                                    <a href="{{ item.get_absolute_url }}" class="product-thumbnail">
+                                                        <img alt="{{ item.description }}"
+                                                             src="{{ MEDIA_URL }}{% thumbnail item.image 48 48 %}">
+                                                    </a>
+                                                {% endblock %}
+                                                {% endif %}
+                                                <a href="{{ item.get_absolute_url }}">{{ item.description|parse_description }}</a>
+
+                                                <div class="item-quantity">
+                                                    <span class="qty">{% trans "Qty" %}: </span>
+                                                    <button class="btn-quantity decrement" onclick="decrementItem(this)" type="button">
+                                                        <i class="glyphicon glyphicon-minus"></i>
+                                                    </button>
+                                                    <span class="number">{{ item.quantity }}</span>
+                                                    <button class="btn-quantity increment" onclick="incrementItem(this)" type="button">
+                                                        <i class="glyphicon glyphicon-plus"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="prices">
+                                                    <span>{{ item.total_price|currency }}</span>
+                                                </div>
+                                            </div>
+                                            <div id="remove-wrapper">
+                                                <button type="button" class="remove-button" onclick="removeItem(this)"
+                                                        title="{% trans "Remove Item" %}">{% trans "Remove Item" %}</button>
+                                            </div>
+                                        </li>
+                                    {% endwith %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% endblock %}
+                    {% block cart_footer %}
+                    <footer class="cart-footer">
+                        <div class="calculations">
+                            {% order_totals_offcanvas %}
+                            <div class="cart-actions">
+                                <a href="{% url "shop_checkout" %}" class="btn btn-primary btn-lg">
+                                    {% if request.session.order.step %}
+                                        {% trans "Return to Checkout" %}
+                                    {% else %}
+                                        {% trans "Go to Checkout" %}
+                                    {% endif %}
+                                </a>
+                            </div>
+                        </div>
+                    </footer>
+                    {% endblock %}
+                </form>
+                {% endblock %}
+
+            {% else %}
+                {% block empty_cart %}
+                <div class="line-item-empty">{% trans "Your Cart is empty." %}</div>
+                {% endblock %}
+            {% endif %}
+        </div>
+    </div>
+    <button class="close-button" id="close-cart">{% trans "Close Cart" %}</button>
+</section>

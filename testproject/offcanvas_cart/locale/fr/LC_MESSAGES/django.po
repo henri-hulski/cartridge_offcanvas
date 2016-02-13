@@ -1,0 +1,87 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Offcanvas Cart\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-01-30 23:16+0100\n"
+"PO-Revision-Date: 2016-01-30 23:44+0100\n"
+"Last-Translator: Henri Schumacher <henri.hulski@gazeta.pl>\n"
+"Language-Team: Henri Hulski <henri@openhomeo.info>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: templates/shop/includes/offcanvas_cart.html:6
+msgid "Your Cart"
+msgstr "Votre panier"
+
+#: templates/shop/includes/offcanvas_cart.html:51
+msgid "Qty"
+msgstr "Qté"
+
+#: templates/shop/includes/offcanvas_cart.html:66
+msgid "Remove Item"
+msgstr "Supprimer?"
+
+#: templates/shop/includes/offcanvas_cart.html:80
+msgid "Return to Checkout"
+msgstr "Commande"
+
+#: templates/shop/includes/offcanvas_cart.html:82
+msgid "Go to Checkout"
+msgstr "Valider la commande"
+
+#: templates/shop/includes/offcanvas_cart.html:91
+msgid "Your Cart is empty."
+msgstr "Votre panier est vide."
+
+#: templates/shop/includes/offcanvas_cart_icon.html:4
+#, python-format
+msgid "1 item"
+msgid_plural "%(cart_quantity)s items"
+msgstr[0] "1 article"
+msgstr[1] "%(cart_quantity)s articles"
+
+#: templates/shop/includes/order_totals_offcanvas.html:4
+msgid "Sub total"
+msgstr "Sous-total"
+
+#: templates/shop/includes/order_totals_offcanvas.html:15
+msgid "Discount"
+msgstr "Réduction"
+
+#: templates/shop/includes/order_totals_offcanvas.html:26
+msgid "Shipping"
+msgstr "Livraison"
+
+#: templates/shop/includes/order_totals_offcanvas.html:33
+msgid "FREE"
+msgstr "GRATUITE"
+
+#: templates/shop/includes/order_totals_offcanvas.html:43
+msgid "Tax"
+msgstr "VAT"
+
+#: templates/shop/includes/order_totals_offcanvas.html:52
+msgid "Total"
+msgstr "Total"
+
+#: views.py:35
+msgid "Item added to cart"
+msgstr "Article ajouté au panier"
+
+#: views.py:55
+msgid "Your cart has expired"
+msgstr "Votre panier a expiré"
+
+#: views.py:61
+msgid "Cart updated"
+msgstr "Panier mis à jour"
